@@ -29,7 +29,7 @@ if check_password():
     conn = st.connection("gsheets", type=GSheetsConnection)
 
     # データの読み込み
-    df = conn.read(worksheet="meibo", ttl="0") # ttl="0"で常に最新を取得
+    df = conn.read(ttl=0) # ttl=0で常に最新を取得
 
     # --- 新規登録セクション ---
     with st.expander("➕ 新規メンバー登録"):
@@ -52,7 +52,7 @@ if check_password():
                         "未発表バンド": new_unannounced
                     }])
                     updated_df = pd.concat([df, new_data], ignore_index=True)
-                    conn.update(worksheet="名簿", data=updated_df)
+                    conn.update(worksheet="meibo", data=updated_df)
                     st.success(f"{new_name}さんを登録しました！")
                     st.rerun()
                 else:
@@ -86,6 +86,6 @@ if check_password():
             # 削除機能（デモ用：必要に応じて追加）
             if st.button(f"🗑️ {row['名前']}を削除", key=f"del_{index}"):
                 df = df.drop(index)
-                conn.update(worksheet="名簿", data=df)
+                conn.update(worksheet="meibo", data=df)
                 st.rerun()
             st.divider()
