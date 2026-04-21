@@ -29,7 +29,7 @@ if check_password():
     conn = st.connection("gsheets", type=GSheetsConnection)
 
     # データの読み込み
-    df = conn.read(worksheet="meibo", ttl="0") # ttl=0で常に最新を取得
+    df = conn.read(ttl=0) # ttl=0で常に最新を取得
 
     # --- 新規登録セクション ---
     with st.expander("➕ 新規メンバー登録"):
