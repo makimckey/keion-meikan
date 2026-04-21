@@ -35,10 +35,10 @@ if check_password():
     with st.expander("➕ 新規メンバー登録"):
         with st.form("register_form", clear_on_submit=True):
             new_name = st.text_input("名前")
-            new_band = st.text_input("好きなバンド(カンマ区切り)")
+            new_band = st.text_input("好きなバンド")
             new_insts = st.multiselect("演奏できる楽器", ["ギター", "ベース", "ドラム", "ヴォーカル", "キーボード", "その他(サックス、同期音源等)"])
-            new_announced = st.text_input("発表済みバンド(カンマ区切り)")
-            new_unannounced = st.text_input("未発表バンド(カンマ区切り)")
+            new_announced = st.text_input("発表済みバンド")
+            new_unannounced = st.text_input("未発表バンド")
             
             submit = st.form_submit_button("登録")
             
